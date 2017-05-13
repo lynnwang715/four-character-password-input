@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-3.1.0.js"></script>
+    <style>
+        ul, li {
+            list-style: none
+        }
+        li {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #1e1e1e;
+            margin-left: 30px;
+            color: #131313;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+            font-size: 50px;
+        }
+        input {
+            opacity: 0;
+        }
+    </style>
+    <script>
+        //先设置加载后input自动获得焦点
+        $(document).ready(function () {
+            $("password").focus();
+            //声明密码的值和位数
+            var passVal='';
+            var passNum=0;
+
+            $(document).keyup(function (event) {
+                //当按键盘时更新数据
+                var passVal = $("#pass").val();
+                var passNum = passVal.length;
+                //console.log(event.keyCode);
+                console.log(passVal);
+                //遍历li并做出相应填充
+                for (var i = 0; i < 4; i++) {
+                    if (i < passNum) {
+                        $("li").eq(i).html("·")
+                    }else {
+                        $("li").eq(i).html("")
+                    }
+                }
+            });
+            //重新输入
+            $("#rep").click(function () {
+                location.reload()
+            })
+        })
+    </script>
+</head>
+<body onload="window.formLogin.password.focus()">
+<ul>
+    <li class="fPass"></li>
+    <li class="fPass"></li>
+    <li class="fPass"></li>
+    <li class="fPass"></li>
+</ul>
+<form name="formLogin" action="" method="">
+    <input id="user" type="text" name="user" value=""/>
+    <input id="pass" type="password" name="password" value="" maxlength="4"/>
+</form>
+<button id="rep" type="button">重新输入</button>
+</body>
+</html>
+
